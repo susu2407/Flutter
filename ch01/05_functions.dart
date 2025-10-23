@@ -3,7 +3,7 @@
     이름 : 이수연
     내용 : 1장 - Dart 함수
 */
-void hello() {
+void hello(){
   print('Hello Dart!');
 }
 
@@ -25,6 +25,33 @@ int calc(int x, int y, int Function(int, int) operation) {
 Function createHello(String name) {
   return () => "Hello, ${name}";
 }
+
+// 이름이 있는 매개변수 함수
+void person1({String hello = 'hello', String? name}) {
+  print('person1 $hello, $name');
+}
+void person2(String? name, {String? hello}) {
+  print('person2 $hello, $name');
+}
+void person3(String? name, {String? hello, required int age}) {
+  print('person3 $hello, $name, $age');
+}
+
+
+// 선택적 위치 매개변수 함수
+void user1(String name, [int age = 0]) {
+  print('user1 $name, $age');
+}
+void user2(String name, [int? age, String? address]) {
+  print('user2 $name, $age, $address');
+}
+void user3(String name, [int age = 0, String address = 'Unknown', String? job]) {
+  print('user3 $name, $age,$address, $job');
+}
+
+
+
+
 
 void main() {
 
@@ -53,15 +80,27 @@ void main() {
 
   // 고차 함수(함수를 매개변수로 전달 받거나 반환하는 함수)
   int result = calc(10, 4, minus);
-  print(' : ${result}');
+  print('result : ${result}');
 
-  var hello = createHello("홍길동");
-  print(hello());
+  var greeting = createHello("홍길동");
+  print(createHello("홍길동"));
 
 
-  // 多이름이 있는 매개변수(Named Parameter, {중괄호} 매개변수 )
-  // 多선텍적 위치 매개변수(Optional Positional Parameter, [대괄호] 매개변수)
+  // 多 이름이 있는 매개변수(Named Parameter, {중괄호} 매개변수 )
+  person1();
+  person1(name: '홍길동'); // 이렇게 매개변수의 이름(name)을 써줘야 한다.
+  person2('김유신');
+  person2('김춘추', hello: '안녕하세요.');
+  person3('장보고', age: 21, hello: '반갑습니다.');
 
+  // 多 선텍적 위치 매개변수(Optional Positional Parameter, [대괄호] 매개변수)
+  user1('김유신');
+  user1('김춘추', 21);
+  user2('장보고');
+  user2('강감찬', 23);
+  user2('이순신', 31, '부산시 금정구');
+  user3('정약용');
+  user3('정약용', 44, '경기도', '엔지니어');
 
 
 

@@ -60,7 +60,17 @@ void main() {
   // 반복문
   //////////////////////////////////////
 
+  // for문
+  for(int i =1; i <= 5; i++) {
+    print("for문 반복: $i");
+  }
+
   // while문
+  int j = 1;
+  while (j <= 5) {
+    print("while문 반복: $j");
+    j++;
+  }
 
   // do-while문
   int k = 1;
@@ -73,7 +83,7 @@ void main() {
   int num = 1;
   while (true) {
     if (num %5 == 0 && num %7 == 0) {
-      print("num가 5와 7의 공배수라 반복문 종료");
+      print("num가 5배수 또는 7의 배수이므로 반복문 종료");
       break;
     }
     num++;
