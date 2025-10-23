@@ -1,0 +1,104 @@
+/*
+    날짜 : 2025/10/23
+    이름 : 이수연
+    내용 : 1장 - Dart 제어문
+*/
+
+void main() {
+
+  //////////////////////////////////////
+  // 조건문
+  //////////////////////////////////////
+  int number = 10;
+
+  // if
+  if (number > 5) {
+    print("number는 5보다 큽니다.");
+  }
+
+  // if - else
+  if (number % 2 == 0) {
+    print("$number 는 짝수입니다.");
+  } else {
+    print("$number 는 홀수입니다.");
+  }
+
+  // if - else if - else
+  int score = 85;
+  if (score == 100) {
+    print("A 학점");
+  } else if (score >= 90) {
+    print("B 학점");
+  } else if (score >= 80) {
+    print("C 학점");
+  } else if (score >= 70) {
+    print("D 학점");
+  } else {
+    print("F 학점");
+  }
+
+  // switch
+  switch (score ~/ 10) {
+    case 10:
+    case 9:
+      print("A 입니다.");
+      break;
+    case 8:
+      print("B 입니다.");
+      break;
+    case 7:
+      print("C 입니다.");
+      break;
+    case 6:
+      print("D 입니다.");
+      break;
+    default:
+      print("F 입니다.");
+  }
+
+  //////////////////////////////////////
+  // 반복문
+  //////////////////////////////////////
+
+  // while문
+
+  // do-while문
+  int k = 1;
+  do {
+    print("do-wile문 반복: $k");
+    k++;
+  } while (k <= 5);
+
+  // break
+  int num = 1;
+  while (true) {
+    if (num %5 == 0 && num %7 == 0) {
+      print("num가 5와 7의 공배수라 반복문 종료");
+      break;
+    }
+    num++;
+  }
+  print('num: ${num}');
+
+  // continue
+  for (int i =1; i <= 10; i++) {
+    if (i % 2 == 0) {
+      continue; // 짝수일 때 출력 생략
+    }
+    print("i = $i"); // 홀수만 출력
+  }
+
+
+  // 별삼각형
+  for(int a=1; a<=10; a++) {
+    String line ='';
+    for(int b=1; b<=a; b++) {
+      line += '⭐';
+    }
+    print(line);
+  }
+
+
+
+
+}
