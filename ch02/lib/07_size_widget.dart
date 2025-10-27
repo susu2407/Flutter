@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget { // 여기 손 댈 것 없음.
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '뿅뿅마을',
-      home: const MyHomePage(title: '뿅뿅마을 Home Page'),
+      home: const MyHomePage(title: '07. Size Widget 실습'),
     );
   }
 }
@@ -37,16 +37,23 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            Text('Hello Flutter!'),
-            Text('Hello World!')
+      body: Column(
+        children: [
 
-          ],
-        ),
+          // IntrinsicWidth : 같은 배치 관계에서 너비가 가장 큰 위젯을 기준으로 너비 크기가 결정
+          Container(
+            color: Colors.yellow,
+            child: IntrinsicWidth(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(color: Colors.red, width: 150, height: 150, child: Text('A')),
+                  Container(color: Colors.blue, width: 200, height: 200, child: Text('B')),
+                ],
+              ),
+            ),
+          )
+        ],
       )
     );
   }
