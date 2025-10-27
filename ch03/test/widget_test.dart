@@ -1,30 +1,53 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+/*
+  날짜 : 2025/10/27
+  이름 : 이수연
+  내용 : ListView 위젯 실습하기
+*/
 
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ch03/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  runApp(ListViewTest1());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+}
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+class ListViewTest1 extends StatelessWidget {
+  const ListViewTest1({super.key}); // 식별자 코드(??)
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  @override
+  Widget build(BuildContext context) {
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: Text('01.ListView 위젯 실습'),),
+        body: ListView(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black
+                )
+              ),
+            ),
+            Container(
+              width: double.infinity, // 가로 100%(전체 폭 차지)
+              height: 60,
+              child: const Text('2번째 항목'),
+            ),
+            Container(
+              width: double.infinity, // 가로 100%(전체 폭 차지)
+              height: 60,
+              child: const Text('3번째 항목'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
