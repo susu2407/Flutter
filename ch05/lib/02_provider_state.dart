@@ -16,12 +16,12 @@ class CounterProvider extends ChangeNotifier {
 
   void increment(){
     _count++;
-    notifyListeners(); // 상태 변경 알림
+    notifyListeners(); // 상태 변경 시 UI 갱신 트리거
   }
 
   void decrement(){
     _count--;
-    notifyListeners(); // 상태 변경 알림
+    notifyListeners(); // 상태 변경 시 UI 갱신 트리거
   }
 
 }
@@ -63,7 +63,7 @@ class _ParentWidgetState extends State<ParentWidget> {
   Widget build(BuildContext context) {
 
     // provider 접근하기 // provider 객체라고 생각하면 되겠죠.
-    final counterProvider = context.watch<CounterProvider>();
+    final counterProvider = context.watch<CounterProvider>(); // context.watch<T>() : 상태를 "감시"하며 값이 바뀌면 rebuild
 
     return Column(
       children: [
@@ -94,8 +94,6 @@ class _ParentWidgetState extends State<ParentWidget> {
         Child1Widget(),
         const Divider(),
         Child2Widget(),
-        const Divider(),
-        //Child3Widget(),
       ],
     );
   }
@@ -171,51 +169,9 @@ class Child2Widget extends StatelessWidget {
                   ),
                 ],
               ),
-              const Divider(),
-              Child3Widget()
             ],
           );
         }
     );
   }
 }
-
-class Child3Widget extends StatelessWidget {
-  const Child3Widget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<CounterProvider>(
-        builder: (context, notifier, child) {
-          return Column(
-            children: [
-              Text(
-                'Child3 Provider count : ${notifier._count}',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-
-              const SizedBox(height: 10,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        notifier.increment();
-                      },
-                      child: const Text('증가')
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        notifier.decrement();
-                      },
-                      child: const Text('감소')
-                  ),
-                ],
-              ),
-            ],
-          );
-        }
-    );
-  }
-}
-

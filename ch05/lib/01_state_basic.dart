@@ -2,7 +2,6 @@
   날짜 : 2025/10/28
   이름 : 이수연
   내용 : Flutter 5장 01.상태 관리 기본
-  나중에 강사님 깃 보면서, 복습 및 차이점 찾기!!!!!!!!!!!!!!!!!!!!!!!!!
 */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +34,7 @@ class ParentStateApp extends StatefulWidget {
 class _ParentStateAppState extends State<ParentStateApp> {
 
   // (위젯에서 사용하는) 상태 속성 - 이게 상태다! 중요!! // 상태라는 것은 위젯에서 사용하는 속성
+  // 상태 속성
   int _count = 0;
   String _text = '';
 
@@ -86,8 +86,9 @@ class _ParentStateAppState extends State<ParentStateApp> {
             onPressed: increment,
             child: const Text('증가'),
           ),
+
           Divider(), // Divider : 수평선 추가
-          Text('내용 출력'),
+          Text(_text),
           const SizedBox(height: 10,),
           TextField( // TextField에는 TextForm과의 차이는 유효성 검사를 가능 유무. 이건 안됨.
             decoration: InputDecoration(
@@ -98,6 +99,7 @@ class _ParentStateAppState extends State<ParentStateApp> {
               changeText(value);
             },
           ),
+
           Divider(), // Divider : 수평선 추가
           const SizedBox(height: 10,),
           IconWidget(favorited: _favorited, toggleFunction: toggleFavorite,),
@@ -153,6 +155,3 @@ class ContentWidget extends StatelessWidget {
     );
   }
 }
-
-
-

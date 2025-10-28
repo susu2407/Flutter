@@ -133,8 +133,6 @@ class ParentWidget extends StatelessWidget {
                 child: const Text('전체 삭제')
             ),
           ],
-
-
         )
       ],
     );
