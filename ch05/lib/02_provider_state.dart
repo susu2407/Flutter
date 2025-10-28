@@ -30,7 +30,7 @@ class CounterProvider extends ChangeNotifier {
 void main() {
   runApp(
     // provider 의존성 설정 : pubspec.yaml >  flutter : provider: ^6.1.5+1 추가(pub.bev에서 provider 검색)
-    ChangeNotifierProvider(
+    ChangeNotifierProvider( // 하나의 프로바이더 일 떄
       create: (_)=> CounterProvider(), // _ 맥개변수는 context가 들어오지만 우리는 이 함수에서 사용 하지 않겠다는 선언
       child: MyApp(), // MyApp 하위 위젯 트리에서 CounterProvider 접근
     )
@@ -52,13 +52,13 @@ class MyApp extends StatelessWidget {
 }
 
 class ParentWidget extends StatefulWidget {
+  const ParentWidget({super.key});
+
   @override
   State<StatefulWidget> createState() => _ParentWidgetState();
 }
 
 class _ParentWidgetState extends State<ParentWidget> {
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -71,7 +71,6 @@ class _ParentWidgetState extends State<ParentWidget> {
           'Parent Provider count : ${counterProvider._count}', // Getter 호출
           style: Theme.of(context).textTheme.headlineMedium,
         ),
-
         const SizedBox(height: 10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -82,10 +81,55 @@ class _ParentWidgetState extends State<ParentWidget> {
                 },
                 child: const Text('증가')
             ),
-
             ElevatedButton(
                 onPressed: (){
                   counterProvider.decrement();
+                },
+                child: const Text('감소')
+            ),
+          ],
+        ),
+
+        const Divider(),
+        Child1Widget(),
+        const Divider(),
+        Child2Widget(),
+        const Divider(),
+        //Child3Widget(),
+      ],
+    );
+  }
+}
+
+class Child1Widget extends StatelessWidget {
+  const Child1Widget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Provider 구독
+    final counterProvider = Provider.of<CounterProvider>(context);
+
+    return Column(
+      children: [
+        Text(
+          'Child1 Provider count : ${counterProvider._count}',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        const SizedBox(height: 10,),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: (){
+                  counterProvider.increment();
+                },
+                child: const Text('증가')
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  //Provider.of<CounterProvider>(context).decrement(); // 이거 하지 마십시오. 알고 싶으신 분은 천년 뒤에 아십시오ㅎㅎ.
+                  context.read<CounterProvider>().decrement();
                 },
                 child: const Text('감소')
             ),
@@ -96,4 +140,82 @@ class _ParentWidgetState extends State<ParentWidget> {
   }
 }
 
+class Child2Widget extends StatelessWidget {
+  const Child2Widget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CounterProvider>(
+        builder: (context, notifier, child) {
+          return Column(
+            children: [
+              Text(
+                'Child2 Provider count : ${notifier._count}',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        notifier.increment();
+                      },
+                      child: const Text('증가')
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        notifier.decrement();
+                      },
+                      child: const Text('감소')
+                  ),
+                ],
+              ),
+              const Divider(),
+              Child3Widget()
+            ],
+          );
+        }
+    );
+  }
+}
+
+class Child3Widget extends StatelessWidget {
+  const Child3Widget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CounterProvider>(
+        builder: (context, notifier, child) {
+          return Column(
+            children: [
+              Text(
+                'Child3 Provider count : ${notifier._count}',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+
+              const SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        notifier.increment();
+                      },
+                      child: const Text('증가')
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        notifier.decrement();
+                      },
+                      child: const Text('감소')
+                  ),
+                ],
+              ),
+            ],
+          );
+        }
+    );
+  }
+}
 
