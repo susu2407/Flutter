@@ -1,7 +1,7 @@
 /*
   날짜 : 202/10/27
   이름 : 이수연
-  내용 :
+  내용 : Widget Key 실습
 */
 
 import 'package:flutter/cupertino.dart';
@@ -27,7 +27,6 @@ class WidgetKeyTest extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _WidgetKeyTestState();
 }
-
 class _WidgetKeyTestState extends State<WidgetKeyTest> {
 
   bool _swap = false;

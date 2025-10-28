@@ -25,11 +25,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// FormPage : 화면, _FormPageState : 변하는 상태
 class FormPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _FormPageState();
 }
-
 class _FormPageState extends State<FormPage> {
 
   // 폼을 식별하고 상태를 관리하는 전역키 생성
