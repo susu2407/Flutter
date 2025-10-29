@@ -1,7 +1,7 @@
 /*
   날짜 : 2025/10/29
   이름 : 이수연
-  내용 : 7장 01.Flutter 비동기 처리 실습
+  내용 : 7장 02.FutureBuilder 비동기 처리 실습
 */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
