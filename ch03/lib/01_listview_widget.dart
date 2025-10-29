@@ -19,7 +19,7 @@ void main() {
 }
 
 class ListViewTest1 extends StatelessWidget {
-  const ListViewTest1({super.key}); // 식별자 코드(??)
+  const ListViewTest1({super.key}); // 위젯 식별자 코드(??)
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class ListViewTest1 extends StatelessWidget {
           children: [
             for(int i=1; i<=5; i++)
               Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10), // EdgeInsets.all(double value) : 모든 방향 동일한 여백
                 margin: EdgeInsets.all(10),
                 height: 100,
                 decoration: BoxDecoration(
@@ -65,10 +65,6 @@ class ListViewTest1 extends StatelessWidget {
                 print('클릭!');
               },
             )
-
-
-
-
           ],
         ),
       ),
@@ -88,22 +84,22 @@ class ListViewTest2 extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text('02.ListView.builder 실습'),),
-        body: ListView.builder(             //ListView.builder는 아이템 갯수가 많거나 동적으로 위젯을 생성해서 메모리 자원을 효율적으로 사용
-            itemCount: personList.length,   // 목록에 출력할 아이템 총 개수
-            itemBuilder: (countext, index){ // 인덱스를 기반으로 각 아이템 위젯 생성
-              return Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.all(10),
-                height: 100,
-                decoration: BoxDecoration(
-                    color: Colors.blue[100],
-                    border: Border.all(
-                        width: 1,
-                        color: Colors.black
-                    )
-                ),
-                child: Text('${personList[index]}'),
-              );
+        body: ListView.builder(           //ListView.builder는 아이템 갯수가 많거나 동적으로 위젯을 생성해서 메모리 자원을 효율적으로 사용
+          itemCount: personList.length,   // 목록에 출력할 아이템 총 개수
+          itemBuilder: (context, index){  // 인덱스를 기반으로 각 아이템 위젯 생성
+            return Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.all(10),
+              height: 100,
+              decoration: BoxDecoration(
+                color: Colors.blue[100],
+                border: Border.all(
+                    width: 1,
+                    color: Colors.black
+                )
+              ),
+              child: Text('${personList[index]}'),
+            );
         }),
       ),
     );
@@ -129,13 +125,13 @@ class ListViewTest3 extends StatelessWidget {
         appBar: AppBar(title: Text('03.ListView.separated 실습'),),
         body: ListView.separated(             //ListView.separated는 ListView.builder에서 목록 구분서을 커스텀 할 수 있는 위젯
             itemCount: userList.length,       // 목록에 출력할 아이템 총 개수
-            itemBuilder: (countext, index){   // 인덱스를 기반으로 각 아이템 위젯 생성
+            itemBuilder: (context, index){    // 인덱스를 기반으로 각 아이템 위젯 생성
               return ListTile(
                   leading: CircleAvatar(
                     radius: 20,
                     backgroundImage: NetworkImage(userList[index].avatar),
                   ),
-                  title: Text('${userList[index].name}(${userList[index].userid}'), // 표현식 주의하기
+                  title: Text('${userList[index].name}(${userList[index].userid})'), // 표현식 주의하기
                   subtitle: Text(userList[index].birth),
                   trailing: const Icon(Icons.more_vert),
                   onTap: (){
@@ -146,9 +142,7 @@ class ListViewTest3 extends StatelessWidget {
           separatorBuilder: (BuildContext context, int index){
               return Divider(height: 1, color: Colors.black,);  //Divider : 구분선
           },
-
-
-            ),
+        ),
       ),
     );
   }
