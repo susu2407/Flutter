@@ -36,15 +36,28 @@ class _User1ModifyState extends State<User1Modify> {
   @override
   void initState() {
     super.initState();
+
+    log("here...1");
+    _loadUser();
   }
 
   // 기존 사용자 데이터 불러오기
-  void _loadUser() {
+  Future<void> _loadUser() async {
+    log("here...2");
 
-    try{
+    try {
+      // ⭐Spring에서 ResponseEntity.status(HttpStatus.FOUND)로 되어 있어서 데이터를 못 가져옴 FOUND -> OK로 해야됨
+      User1 user = await service.getUser(widget.userid);
+      log("here...3 : $user");
 
+      setState(() {
+        _useridController.text = user.userid;
+        _nameController.text = user.name;
+        _birthController.text = user.birth;
+        _ageController.text = user.age.toString();
+      });
     }catch(e){
-
+      _showDialog('조회 실패', '사용자 정보를 불러오는 중 오류가 발생했습니다. \n$e');
     }
 
   }
@@ -61,15 +74,22 @@ class _User1ModifyState extends State<User1Modify> {
     );
 
     try{
-      // ⭐⭐⭐ Spring에서 ResponseEntity.status(HttpStatus.ACCEPTED)로 되어 있어서 데이터를 못 가져옴 ACCEPTED -> ok로 해야됨
+      // ⭐Spring에서 ResponseEntity.status(HttpStatus.ACCEPTED)로 되어 있어서 데이터를 못 가져옴 ACCEPTED -> ok로 해야됨
       User1 modifiedUser = await service.updateUser(modifyUser);
+
+      // 성공
+      await _showDialog('수정 성공', '사용자가 성공적으로 수정 되었습니다! \nUserID: ${modifiedUser.userid}');
+
+      // async 이후 context 안전하게 사용하기 위한 처리, _User1RegisterState 객체가 위젯 트리에 없으면 함수 종료
+      if (!mounted) return;
+
+      // 성공 후 목록 이동
+      Navigator.pop(context, modifiedUser);
 
     }catch(e){
       // 실패
       _showDialog('수정 실패', '사용자 수정 중 오류가 발생했습니다.\n$e');
     }
-
-
   }
 
   // 대화상자(Dialog) 보여주기 : 성공/실패 알림
@@ -176,5 +196,6 @@ class _User1ModifyState extends State<User1Modify> {
       ),
     );
   }
+
 
 }
