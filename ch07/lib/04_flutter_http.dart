@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
 class HttpScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _HttpScreenState();
-
 }
 
 class _HttpScreenState extends State<HttpScreen> {
