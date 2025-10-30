@@ -1,11 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/screen/main/cart_tab.dart';
-import 'package:kmark_shopping_app/screen/main/category_tab.dart';
-import 'package:kmark_shopping_app/screen/main/home_tab.dart';
-import 'package:kmark_shopping_app/screen/main/my_tab.dart';
-import 'package:kmark_shopping_app/screen/main/search_tab.dart';
+import 'package:kmark_shopping_app/screens/main/cart_tab.dart';
+import 'package:kmark_shopping_app/screens/main/category_tab.dart';
+import 'package:kmark_shopping_app/screens/main/home_tab.dart';
+import 'package:kmark_shopping_app/screens/main/my_tab.dart';
+import 'package:kmark_shopping_app/screens/main/search_tab.dart';
 
 class MainTabScreen extends StatefulWidget {
   const MainTabScreen({super.key});

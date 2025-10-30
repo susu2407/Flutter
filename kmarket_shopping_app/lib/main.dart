@@ -8,8 +8,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/screen/main/main_tab_screen.dart';
-import 'package:kmark_shopping_app/screen/splash_screen.dart';
+import 'package:kmark_shopping_app/screens/main/main_tab_screen.dart';
+import 'package:kmark_shopping_app/screens/splash_screen.dart';
 
 
 

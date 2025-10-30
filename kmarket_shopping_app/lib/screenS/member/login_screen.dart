@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/screen/member/terms_screen.dart';
+import 'package:kmark_shopping_app/screens/member/terms_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,8 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('image/logo.png'),
+              Image.asset('images/logo.png'),
               const SizedBox(height: 20,),
+
               const Text('쇼핑몰 로그인', style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),),
               const SizedBox(height: 20,),
               TextField(decoration: InputDecoration(

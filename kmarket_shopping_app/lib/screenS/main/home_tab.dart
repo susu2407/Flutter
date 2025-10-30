@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/screen/member/login_screen.dart';
+import 'package:kmark_shopping_app/screens/member/login_screen.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});

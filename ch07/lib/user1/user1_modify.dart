@@ -4,11 +4,17 @@
   내용 : 05.Flutter REST API 실습 - user1 수정 구현
 */
 
+import 'dart:developer';
+
 import 'package:ch07/user1/user1.dart';
 import 'package:ch07/user1/user1_service.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+// User1 목록
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 class User1Modify extends StatefulWidget {
 
@@ -38,6 +44,8 @@ class _User1ModifyState extends State<User1Modify> {
     super.initState();
 
     log("here...1");
+
+    // 수정 데이터 조회하기
     _loadUser();
   }
 
