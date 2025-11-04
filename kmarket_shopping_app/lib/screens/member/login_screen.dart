@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/providers/auth_provider.dart';
-import 'package:kmark_shopping_app/screens/member/terms_screen.dart';
-import 'package:kmark_shopping_app/services/member_service.dart';
-import 'package:kmark_shopping_app/services/token_storage_service.dart';
+import 'package:kmarket_shopping_app/providers/auth_provider.dart';
+import 'package:kmarket_shopping_app/screens/member/terms_screen.dart';
+import 'package:kmarket_shopping_app/services/member_service.dart';
+import 'package:kmarket_shopping_app/services/token_storage_service.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {

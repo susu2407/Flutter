@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/screens/member/register_screen.dart';
+import 'package:kmarket_shopping_app/screens/member/register_screen.dart';
 
 class TermsScreen extends StatefulWidget {
   const TermsScreen({super.key});

@@ -1,4 +1,4 @@
-import 'package:kmark_shopping_app/models/category_sub.dart';
+import 'package:kmarket_shopping_app/models/category_sub.dart';
 
 import '../models/category.dart';
 

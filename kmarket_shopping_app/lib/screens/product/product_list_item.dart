@@ -2,8 +2,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/config/app_config.dart';
-import 'package:kmark_shopping_app/models/product.dart';
+import 'package:kmarket_shopping_app/config/app_config.dart';
+import 'package:kmarket_shopping_app/models/product.dart';
 
 class ProductListItem extends StatelessWidget {
 

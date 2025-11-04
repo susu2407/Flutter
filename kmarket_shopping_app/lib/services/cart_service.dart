@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:kmark_shopping_app/config/app_config.dart';
-import 'package:kmark_shopping_app/services/token_storage_service.dart';
+import 'package:kmarket_shopping_app/config/app_config.dart';
+import 'package:kmarket_shopping_app/services/token_storage_service.dart';
 
 class CartService {
 

@@ -1,12 +1,14 @@
-import 'package:kmark_shopping_app/models/product.dart';
+import 'package:kmarket_shopping_app/models/product.dart';
 
 class Cart {
 
+  // 객체 생성
   final int cartId;
   final String userid;
   final Product product;
   final int quantity;
 
+  // 생성자 생성
   Cart({
     required this.cartId,
     required this.userid,
@@ -14,6 +16,7 @@ class Cart {
     required this.quantity
   });
 
+  // JSON <-> 객체 변환
   factory Cart.fromJson(Map<String, dynamic> json) {
 
     final product = json['product'] as Map<String, dynamic>;

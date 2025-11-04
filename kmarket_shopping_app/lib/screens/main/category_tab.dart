@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/models/category.dart';
-import 'package:kmark_shopping_app/models/category_sub.dart';
-import 'package:kmark_shopping_app/screens/product/product_list_screen.dart';
-import 'package:kmark_shopping_app/services/category_service.dart';
+import 'package:kmarket_shopping_app/models/category.dart';
+import 'package:kmarket_shopping_app/models/category_sub.dart';
+import 'package:kmarket_shopping_app/screens/product/product_list_screen.dart';
+import 'package:kmarket_shopping_app/services/category_service.dart';
 
 
 class CategoryTab extends StatefulWidget {

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kmark_shopping_app"
+    namespace = "com.example.kmarket_shopping_app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kmark_shopping_app/models/product.dart';
-import 'package:kmark_shopping_app/models/product_response.dart';
-import 'package:kmark_shopping_app/screens/product/product_list_item.dart';
-import 'package:kmark_shopping_app/services/product_service.dart';
+import 'package:kmarket_shopping_app/models/product.dart';
+import 'package:kmarket_shopping_app/models/product_response.dart';
+import 'package:kmarket_shopping_app/screens/product/product_list_item.dart';
+import 'package:kmarket_shopping_app/services/product_service.dart';
 
 /*
   - 샘플 데이터 넣기

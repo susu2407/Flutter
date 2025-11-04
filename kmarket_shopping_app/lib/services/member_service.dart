@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:kmark_shopping_app/models/member.dart';
+import 'package:kmarket_shopping_app/models/member.dart';
 import 'package:http/http.dart' as http;
 
 class MemberService {

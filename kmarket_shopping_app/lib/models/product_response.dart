@@ -1,6 +1,6 @@
 
 
-import 'package:kmark_shopping_app/models/product.dart';
+import 'package:kmarket_shopping_app/models/product.dart';
 
 class ProductResponse {
 
