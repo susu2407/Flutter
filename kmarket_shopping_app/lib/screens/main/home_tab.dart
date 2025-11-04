@@ -1,18 +1,32 @@
 
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kmark_shopping_app/providers/auth_provider.dart';
 import 'package:kmark_shopping_app/screens/member/login_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'package:kmark_shopping_app/services/token_storage_service.dart';
 
 class HomeTab extends StatefulWidget {
-  const HomeTab({super.key});
+
+  final Function(int) onTabSwitch; // (매개 변수를 받는 함수, ???????)
+
+  const HomeTab({super.key, required this.onTabSwitch});
 
   @override
   State<StatefulWidget> createState() => _HomeTabState();
 }
 
+// _HomeTab이 ~~의 구독자가 된다.
 class _HomeTabState extends State<HomeTab> {
+
+  final tokenStorageService = TokenStorageService();
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: _buildAppBar(context),),
       body: SingleChildScrollView(
@@ -26,8 +40,6 @@ class _HomeTabState extends State<HomeTab> {
             _buildProductSection(context, '최신 상품'),
             _buildProductSection(context, '할인 상품'),
             _buildFooter(context)
-            
-            
           ],
         ),
       )
@@ -36,17 +48,41 @@ class _HomeTabState extends State<HomeTab> {
   
   // 상단 앱바 디자인 함수
   Widget _buildAppBar(BuildContext context) {
+
+    // AuthProvider 구독
+    final authProvider = Provider.of<AuthProvider>(context);
+    bool isLoggedIn = authProvider.isLoggedIn;
+
+    log('isLoggedIn : $isLoggedIn');
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Image.asset('images/logo.png', width: 140,),
         IconButton(
-            onPressed: (){
+          onPressed: () async {
+
+            if(isLoggedIn){
+              /* (이렇게 하면 사용자 입장에서 불편??하다)
               Navigator.of(context).push(
-               MaterialPageRoute(builder: (_) => LoginScreen())
+                MaterialPageRoute(builder: (_) => MyApp()),
               );
-            },
-            icon: Icon(Icons.login, size: 30,),
+              */
+
+              // 마이페이지 탭 전환
+              widget.onTabSwitch(3);
+
+            }else {
+              await Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => LoginScreen())
+              );
+              setState(() {});
+            }
+          },
+          icon: Icon(
+            isLoggedIn ? Icons.person : Icons.login,
+            size: 30,
+          ),
         )
       ],
     );
@@ -65,7 +101,6 @@ class _HomeTabState extends State<HomeTab> {
         decoration: InputDecoration(
           hintText: '상품 검색',
           border: null,
-
         ),
       ),
     );

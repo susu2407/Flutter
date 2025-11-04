@@ -26,6 +26,11 @@ class Member {
 
   @override
   String toString() {
-    return 'Member{usid: $usid, pass: $pass, name: $name, email: $email, role: $role}';
+    return 'Member{'
+        'usid: $usid, '
+        'pass: $pass, '
+        'name: $name, '
+        'email: $email, '
+        'role: $role}';
   }
 }

@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:kmark_shopping_app/models/member.dart';
-import 'package:kmark_shopping_app/service/member_service.dart';
+import 'package:kmark_shopping_app/services/member_service.dart';
 
 
 class RegisterScreen extends StatefulWidget {
