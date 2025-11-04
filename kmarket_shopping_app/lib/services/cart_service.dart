@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 import 'dart:developer';
 
@@ -8,11 +9,41 @@ import 'package:kmarket_shopping_app/services/token_storage_service.dart';
 class CartService {
 
   // 토큰을 받아야 한다 -> JWT
-  final _tokenStorageService = TokenStorageService(); // 너무 기니깐 타입은 뺄게요. 빼도 되더라구요.
+  final _tokenStorageService = TokenStorageService(); // 너무 기니깐 타입은 생략
+
+
+  Future<List<dynamic>> getCarts() async {
+    try {
+      // JWT 가져오기
+      final jwt = await _tokenStorageService.readToken();
+      log('jwt : $jwt');
+
+      final response = await http.get(
+          Uri.parse('${AppConfig.baseUrl}/cart'),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer$jwt",
+          }
+      );
+
+      if(response.statusCode == 200){
+        log('here1 : ${response.body}');
+        /*
+          jsonDecode의 반환타입은 JSON 문자열이 [] 이면 List<dynamic>, {} 이면 Map<String, dynamic>으로 선언
+        */
+        return jsonDecode(response.body);
+      }else {
+        throw Exception(response.statusCode);
+      }
+    }catch(err){
+      throw Exception(err);
+    }
+  }
+
 
   Future<Map<String, dynamic>> addCart(int pno, int quantity) async {
 
-    try{
+    try {
       // JWT 가져오기
       final jwt = await _tokenStorageService.readToken();
       log('jwt : $jwt');
@@ -23,25 +54,59 @@ class CartService {
         "quantity": quantity,
       };
 
+      log('jsonData : $jsonData');
+
       final response = await http.post(
-        Uri.parse('${AppConfig.baseUrl}/cart'),
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $jwt"
-        },
-        body: jsonEncode(jsonData) // addCart에서 모델 클래스로 데이터를 받아 올 것이다.
+          Uri.parse('${AppConfig.baseUrl}/cart'),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer$jwt",
+          },
+          body: jsonEncode(jsonData)     // addCart에서 모델 클래스로 데이터를 받아 올 것이다.
+
       );
 
       // 데이터는 모델 데이터를 하나 만들어야 한다.
       if(response.statusCode == 200){
+        log('response.body : ${response.body}');
         return jsonDecode(response.body);
-      }else{
+      }else {
+        log('err...1');
         throw Exception(response.statusCode);
       }
+    }catch(err){
+      log('err...2');
+      throw Exception(err);
+    }
+  }
 
+  Future<bool> deleteCart(int cartId) async {
+    try {
+      // JWT 가져오기
+      final jwt = await _tokenStorageService.readToken();
+      log('jwt : $jwt');
+
+      final response = await http.delete(
+          Uri.parse('${AppConfig.baseUrl}/cart/$cartId'),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer$jwt",
+          }
+      );
+
+      if(response.statusCode == 200){
+        log('here1 : ${response.body}');
+        /*
+          jsonDecode의 반환타입은 JSON 문자열이 [] 이면 List<dynamic>, {} 이면 Map<String, dynamic>으로 선언
+        */
+        return jsonDecode(response.body);
+      }else {
+        throw Exception(response.statusCode);
+      }
     }catch(err){
       throw Exception(err);
     }
-
   }
+
+
 }
